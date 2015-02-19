@@ -1,0 +1,101 @@
+<div>
+  <form id="EditVesselForm" name="form" role="form"
+        ng-submit="saveVessel()" novalidate>
+    <legend class="sm-col-12">Edit vessel</legend>
+
+    <div class="form-group">
+      <label id="lbl_name" for="name" class="control-label">Name</label>
+      <input type="text" class="form-control input-lg" name="name" id="name" placeholder="Name of vessel"
+             maxlength="120" required ng-model="vessel.name">
+      <span class="help-block" ng-show="form.$submitted && form.name.$error.required">You need to specify a name for the vessel</span>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Measurements</div>
+      <div class="panel-body">
+        <div class="form-group col-sm-4" ng-class="{ 'has-error': (form.width.$dirty || form.$submitted) && form.width.$invalid }">
+          <label id="lbl_width" for="width" class="control-label">Width</label>
+          <div class="input-group">
+            <input type="number" class="form-control" name="width" id="width" min="1" required ng-model="vessel.dimensions.width">
+            <div class="input-group-addon">meters</div>
+          </div>
+          <span class="help-block" ng-show="form.$submitted && form.width.$error.required">You need to specify the width in meters</span>
+          <span class="help-block" ng-show="form.width.$error.number">The width has to be valid number</span>
+          <span class="help-block" ng-show="form.width.$error.min">The width has to be greater than 0</span>
+        </div>
+
+        <div class="form-group col-sm-4" ng-class="{ 'has-error': (form.length.$dirty || form.$submitted) && form.length.$invalid }">
+          <label id="lbl_length" for="length" class="control-label">Length</label>
+          <div class="input-group">
+            <input type="number" class="form-control" name="length" id="length" min="1" required ng-model="vessel.dimensions.length">
+            <div class="input-group-addon">meters</div>
+          </div>
+          <span class="help-block" ng-show="form.$submitted && form.length.$error.required">You need to specify the length in meters</span>
+          <span class="help-block" ng-show="form.length.$error.number">The length has to be valid number</span>
+          <span class="help-block" ng-show="form.length.$error.min">The length has to be greater than 0</span>
+        </div>
+
+        <div class="form-group col-sm-4" ng-class="{ 'has-error': (form.draft.$dirty || form.$submitted) && form.draft.$invalid }">
+          <label id="lbl_draft" for="draft" class="control-label">Draft</label>
+          <div class="input-group">
+            <input type="number" class="form-control" name="draft" id="draft" min="1" required ng-model="vessel.dimensions.draft">
+            <div class="input-group-addon">meters</div>
+          </div>
+          <span class="help-block" ng-show="form.$submitted && form.draft.$error.required">You need to specify the draft in meters</span>
+          <span class="help-block" ng-show="form.draft.$error.number">The draft has to be valid number</span>
+          <span class="help-block" ng-show="form.draft.$error.min">The draft has to be greater than 0</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Last coordinates</div>
+      <div class="panel-body">
+        <div class="col-sm-3">
+          <div class="form-group" ng-class="{ 'has-error': (form.latitude.$dirty || form.$submitted) && form.latitude.$invalid }">
+            <label id="lbl_latitude" for="latitude" class="control-label">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="latitude" required ng-model="vessel.lastLocation.latitude">
+            <span class="help-block" ng-show="form.$submitted && form.latitude.$error.required">You need to specify the latitude in meters</span>
+            <span class="help-block" ng-show="form.latitude.$error.number">The latitude has to be valid number</span>
+            <span class="help-block" ng-show="form.latitude.$error.min">The latitude has to be greater than 0</span>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error': (form.longitude.$dirty || form.$submitted) && form.longitude.$invalid }">
+            <label id="lbl_longitude" for="longitude" class="control-label">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="longitude" required ng-model="vessel.lastLocation.longitude">
+            <span class="help-block" ng-show="form.$submitted && form.longitude.$error.required">You need to specify the longitude in meters</span>
+            <span class="help-block" ng-show="form.longitude.$error.number">The longitude has to be valid number</span>
+            <span class="help-block" ng-show="form.longitude.$error.min">The longitude has to be greater than 0</span>
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <ui-gmap-google-map          center="map.center"
+                                       zoom="map.zoom"
+                                       dragging="map.dragging"
+                                       bounds="map.bounds"
+                                       events="map.events"
+                                       options="map.options"
+                                       pan="true"
+                                       control="map.control">
+            <ui-gmap-marker coords="map.clickedMarker"  idKey="map.clickedMarker.id" options="map.clickedMarker.options"></ui-gmap-marker>
+          </ui-gmap-google-map>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-actions">
+      <div class="col-sm-4 col-xs-4">
+        <button type="button" class="btn btn-danger" ng-click="deleteVessel()">Delete</button>
+      </div>
+      <div class="col-sm-8 col-xs-8 text-right">
+        <button type="button" class="btn btn-warning" ng-click="resetForm()">Cancel</button>
+
+        <button type="submit" class="btn btn-success" id="btn_save">Save Vessel</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
