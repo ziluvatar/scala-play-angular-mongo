@@ -5,13 +5,13 @@ import models.Vessel
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
-import repositories.VesselsMongodb
+import repositories.{VesselsPersistence, VesselsMongodb}
 
 import scala.concurrent.Future
 
 object Vessels extends Controller {
 
-  def persistence = VesselsMongodb
+  val persistence: VesselsPersistence = VesselsMongodb
 
   def list = Action.async {
     val vesselListFuture: Future[List[Vessel]] = persistence.list()

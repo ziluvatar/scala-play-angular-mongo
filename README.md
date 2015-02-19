@@ -22,6 +22,7 @@ automatically every time the user modify/create/delete a vessel.
 * Google maps for location. It is pretty handy for adding or modifying a location just clicking the map.
 * Error/Info messages. The user gets information about if every operation has been done right or with failures.
 * Validation error messages. User can know and learn how the form should be filled with the right information.
+* The website is responsive to different screen sizes. It uses internally twitter bootstrap as base.
 
 
 Technical Decisions
