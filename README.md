@@ -1,6 +1,16 @@
 Vessels Management Tool
 =================================
 
+What's this?
+---------------------------
+This is a small tiny webapp to manage Vessels, its purpose is to show a sample implementation with these 4 technologies together:
+- Scala in backend, using Play framework
+- AngularJS in the browser, using a REST api provided by the server to manage the vessels.
+- Mongodb as database to store the vessels
+
+It also shows the vessels in google maps. The UI is based on [bootstrap](http://getbootstrap.com/).
+
+
 How to run it
 ---------------------------
 To run the tests you don't need db because I used a embedded mongodb.
