@@ -1,6 +1,20 @@
 Vessels Management Tool
 =================================
 
+How to run it
+---------------------------
+To run the tests you don't need db because I used a embedded mongodb.
+To run the website you need to have a mongodb running in the port `27017` without any authentication.
+
+I used the activator play-scala seed at starting point, so you can run the tests with:
+`./activator test`
+
+Or use this one to run the app:
+`./activator run`
+
+After that you can go to http://localhost:9000/ to view the web.
+
+
 Focus
 ---------------------------
 
